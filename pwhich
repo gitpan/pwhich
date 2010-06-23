@@ -1,0 +1,74 @@
+#!/usr/bin/perl -w
+use strict;
+our $VERSION = "0.1";
+die "Usage: $0 Module::Name\n"
+    if @ARGV == 0;
+
+my $stat = 0;
+MODULE: foreach my $modname (@ARGV) {
+    my $modfile = $modname;
+    $modfile =~ s{::}{/}g;
+    $modfile .= ".pm";
+    foreach my $dir (@INC) {
+	if (-r "$dir/$modfile") {
+	    print "$dir/$modfile\n";
+	    next MODULE;
+	}
+    }
+    print "$modname not found\n";
+    $stat++;
+}
+
+exit ($stat >= 254? 254 : $stat);
+
+__END__
+
+=head1 NAME
+
+pwhich - Locate a Perl module
+
+=head1 SYNOPSIS
+
+  pwhich Some::Module ...
+
+=head1 DESCRIPTION
+
+B<pwhich> returns the pathnames of the given Perl module(s),
+by searching the @INC array.  Only modules installed in the standard
+@INC locations will be found.
+
+This is similar to the Unix/Linux B<which> command, but for Perl modules.
+
+=head1 OPTIONS
+
+None.
+
+=head1 EXIT STATUS
+
+    0     all modules found
+    1-254 the number of modules not found (max 254)
+    255   utility error
+
+=head1 INSTALLATION
+
+The usual:
+
+    perl Makefile.PL
+    make
+    make test
+    sudo make install
+
+=head1 AUTHOR
+
+Steve Roscio  C<< <roscio@cpan.org> >>
+
+Copyright (c) 2010, Steve Roscio C<< <roscio@cpan.org> >>. All rights reserved.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 KEYWORDS
+
+pwhich
+
+=cut

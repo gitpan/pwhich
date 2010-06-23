@@ -1,0 +1,41 @@
+NAME
+    pwhich - Locate a Perl module
+
+SYNOPSIS
+      pwhich Some::Module ...
+
+DESCRIPTION
+    pwhich returns the pathnames of the given Perl module(s), by searching
+    the @INC array. Only modules installed in the standard @INC locations
+    will be found.
+
+    This is similar to the Unix/Linux which command, but for Perl modules.
+
+OPTIONS
+    None.
+
+EXIT STATUS
+        0     all modules found
+        1-254 the number of modules not found (max 254)
+        255   utility error
+
+INSTALLATION
+    The usual:
+
+        perl Makefile.PL
+        make
+        make test
+        sudo make install
+
+AUTHOR
+    Steve Roscio "<roscio@cpan.org>"
+
+    Copyright (c) 2010, Steve Roscio "<roscio@cpan.org>". All rights
+    reserved.
+
+    This module is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself. See perlartistic.
+
+KEYWORDS
+    pwhich
+

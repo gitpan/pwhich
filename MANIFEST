@@ -1,0 +1,6 @@
+Makefile.PL
+MANIFEST
+README
+pwhich
+t/10-core.t
+META.yml                                 Module meta-data (added by MakeMaker)
